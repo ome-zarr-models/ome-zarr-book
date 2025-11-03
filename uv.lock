@@ -368,53 +368,6 @@ wheels = [
 ]
 
 [[package]]
-name = "heftie-textbook"
-version = "0.1.0"
-source = { virtual = "." }
-dependencies = [
-    { name = "imageio", extra = ["tifffile"] },
-    { name = "joblib" },
-    { name = "jupyter-book" },
-    { name = "matplotlib" },
-    { name = "numcodecs" },
-    { name = "numpy" },
-    { name = "ome-zarr-models" },
-    { name = "pydantic-zarr" },
-    { name = "rich" },
-    { name = "scipy" },
-    { name = "zarr" },
-]
-
-[package.dev-dependencies]
-dev = [
-    { name = "jupyter-ruff" },
-    { name = "jupyterlab" },
-    { name = "jupytext" },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "imageio", extras = ["tifffile"], specifier = "==2.37.0" },
-    { name = "joblib", specifier = "==1.5.2" },
-    { name = "jupyter-book", specifier = "==2.0.0b3" },
-    { name = "matplotlib", specifier = "==3.10.7" },
-    { name = "numcodecs", specifier = "==0.15.1" },
-    { name = "numpy", specifier = "==2.3.4" },
-    { name = "ome-zarr-models", specifier = "==0.1.10" },
-    { name = "pydantic-zarr", specifier = "==0.7.0" },
-    { name = "rich", specifier = "==14.2.0" },
-    { name = "scipy", specifier = "==1.16.2" },
-    { name = "zarr", specifier = "==2.18.7" },
-]
-
-[package.metadata.requires-dev]
-dev = [
-    { name = "jupyter-ruff", specifier = ">=0.3.0" },
-    { name = "jupyterlab", specifier = "==4.4.10" },
-    { name = "jupytext", specifier = "==1.18.1" },
-]
-
-[[package]]
 name = "httpcore"
 version = "1.0.9"
 source = { registry = "https://pypi.org/simple" }
@@ -1071,6 +1024,53 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/73/e3/04ecc41e71462276ee867ccbef26a4448638eadecf1bc56772c9ed6d0255/numpy-2.3.4-cp312-cp312-win32.whl", hash = "sha256:a49d797192a8d950ca59ee2d0337a4d804f713bb5c3c50e8db26d49666e351dc", size = 6291380, upload-time = "2025-10-15T16:16:03.938Z" },
     { url = "https://files.pythonhosted.org/packages/3d/a8/566578b10d8d0e9955b1b6cd5db4e9d4592dd0026a941ff7994cedda030a/numpy-2.3.4-cp312-cp312-win_amd64.whl", hash = "sha256:985f1e46358f06c2a09921e8921e2c98168ed4ae12ccd6e5e87a4f1857923f32", size = 12787999, upload-time = "2025-10-15T16:16:05.801Z" },
     { url = "https://files.pythonhosted.org/packages/58/22/9c903a957d0a8071b607f5b1bff0761d6e608b9a965945411f867d515db1/numpy-2.3.4-cp312-cp312-win_arm64.whl", hash = "sha256:4635239814149e06e2cb9db3dd584b2fa64316c96f10656983b8026a82e6e4db", size = 10197412, upload-time = "2025-10-15T16:16:07.854Z" },
+]
+
+[[package]]
+name = "ome-zarr-book"
+version = "1.0"
+source = { virtual = "." }
+dependencies = [
+    { name = "imageio", extra = ["tifffile"] },
+    { name = "joblib" },
+    { name = "jupyter-book" },
+    { name = "matplotlib" },
+    { name = "numcodecs" },
+    { name = "numpy" },
+    { name = "ome-zarr-models" },
+    { name = "pydantic-zarr" },
+    { name = "rich" },
+    { name = "scipy" },
+    { name = "zarr" },
+]
+
+[package.dev-dependencies]
+dev = [
+    { name = "jupyter-ruff" },
+    { name = "jupyterlab" },
+    { name = "jupytext" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "imageio", extras = ["tifffile"], specifier = "==2.37.0" },
+    { name = "joblib", specifier = "==1.5.2" },
+    { name = "jupyter-book", specifier = "==2.0.0b3" },
+    { name = "matplotlib", specifier = "==3.10.7" },
+    { name = "numcodecs", specifier = "==0.15.1" },
+    { name = "numpy", specifier = "==2.3.4" },
+    { name = "ome-zarr-models", specifier = "==0.1.10" },
+    { name = "pydantic-zarr", specifier = "==0.7.0" },
+    { name = "rich", specifier = "==14.2.0" },
+    { name = "scipy", specifier = "==1.16.2" },
+    { name = "zarr", specifier = "==2.18.7" },
+]
+
+[package.metadata.requires-dev]
+dev = [
+    { name = "jupyter-ruff", specifier = "==0.3.0" },
+    { name = "jupyterlab", specifier = "==4.4.10" },
+    { name = "jupytext", specifier = "==1.18.1" },
 ]
 
 [[package]]
