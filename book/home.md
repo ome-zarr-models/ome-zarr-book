@@ -59,6 +59,23 @@ Some of the code examples provided to explain concepts might be a useful startin
 
 If you want to you can [download the Python requirements](https://raw.githubusercontent.com/ome-zarr-models/ome-zarr-book/refs/heads/main/requirements.txt) used to generate the output in this book, and use them to create a fresh Python environment.
 
+## Contributing
+
+This is a community resource - everyone is welcome to read and contribute to the textbook!
+There are lots of different ways you can contribute:
+
+- **Feedback**: either email David (email link above), post on our image.sc thread, or [open an issue on GitHub](https://github.com/ome-zarr-models/ome-zarr-book/issues).
+- **Suggestions** for new content: same as feedback.
+- **Writing** new content: please open a pull request with your suggested update. If you want to make a major change it might be best to open an issue first to discuss it briefly and check it fits in with the rest of the book.
+
+### Roadmap
+
+The textbook is not complete; here are chapters we would like to add:
+
+- Add a chapter explaining image containers in OME-Zarr (Zarr groups containing more than one OME-Zarr image), including high content screening and label groups.
+
+If you would like to write a chapter, or propose another new chapter to add to the roadmap, please get in touch!
+
 ## Acknowledgements
 
 The creation of this book was funded by the [Handling Enormous Files from Tomographic Imaging Experiments (HEFTIE) project](https://oscars-project.eu/projects/heftie-handling-enormous-files-tomographic-imaging-experiments).
