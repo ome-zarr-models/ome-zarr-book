@@ -6,6 +6,8 @@ authors:
     github: dstansby
     corresponding: true
     email: d.stansby@ucl.ac.uk
+    bluesky: "@dstansby.bsky.social"
+    url: https://davidstansby.com
     affiliations:
       - id: ucl
         institution: UCL
