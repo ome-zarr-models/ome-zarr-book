@@ -28,7 +28,7 @@ project:
       affiliations:
         - id: ucl
 
-  github: UCL-MSM-Bio/heftie-textbook
+  github: ome-zarr-models/ome-zarr-book
   bibliography:
     - references.bib
   exports:
@@ -44,7 +44,7 @@ project:
     - file: appendices.md
 site:
   options:
-    logo: images/heftie_logo.svg
+    logo: images/heftie.svg
     folders: true
   # Temporarily hash-pin the theme.
   # See: https://github.com/jupytercon/jupytercon2025-developingextensions/issues/6
