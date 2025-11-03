@@ -1,3 +1,32 @@
+---
+authors:
+  - name: David Stansby
+    id: dstansby
+    orcid: 0000-0002-1365-1908
+    github: dstansby
+    corresponding: true
+    email: d.stansby@ucl.ac.uk
+    affiliations:
+      - id: ucl
+        institution: UCL
+        city: London
+        ror: https://ror.org/02jx3x895
+
+  - name: Ruaridh Gollifer
+    id: ruaridhg
+    orcid: 0000-0001-9319-936X
+    github: ruaridhg
+    affiliations:
+      - id: ucl
+
+  - name: Kimberly Meechan
+    id: K-Meech
+    orcid: 0000-0003-4939-4170
+    github: K-Meech
+    affiliations:
+      - id: ucl
+---
+
 # An Introduction to OME-Zarr for Big Bioimaging Data
 
 This book tries to explain the theory and practice behind handling large bioimaging datasets using the OME-Zarr data format.
