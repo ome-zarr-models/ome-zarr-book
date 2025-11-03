@@ -36,7 +36,7 @@ This means too big to transfer the data quickly from where it's stored to where 
 This can include downloading it over the internet for viewing, or loading it from your hard drive into memory for analysis.
 
 The tools and methods in this texbook are tailored to working with big imaging data.
-Tackling this data adds complexity to the tools and methods, so if you have smaller data it might be easier tot you use other file formats and tools.
+Tackling this data adds complexity to the tools and methods, so if you have smaller data it might be easier to use other file formats and tools.
 See the [Introduction to Bioimage Analysis textbook](https://bioimagebook.github.io) for other options.
 
 ## Using this book
