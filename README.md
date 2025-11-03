@@ -1,13 +1,20 @@
-# heftie-textbook
+# An Introduction to OME-Zarr for Big Bioimaging Data
 
-<img src="book/images/heftie_logo.svg" alt="HEFTIE logo" width="100"/>
+This is a digital textbook that tries to explain the theory and practice behind using the [OME-Zarr data format](https://ngff.openmicroscopy.org/specifications/index.html) for big bioimaging data.
+Click here to access the book.
 
-A digital textbook for working with huge 3D imaging datasets
-Feedback is very welcome, by [opening an issue](https://github.com/HEFTIEProject/heftie-textbook/issues/new) on our GitHub issue tracker.
+Feedback is very welcome, by [opening an issue](https://github.com/ome-zarr-models/ome-zarr-book/issues/new) on our GitHub issue tracker.
 
 ## Contributing
 
-This book is built using [Jupyter Book](https://next.jupyterbook.org/).
+### Development
+
+This book is built using [Jupyter Book](https://next.jupyterbook.org/).This book is built using [Jupyter Book](https://next.jupyterbook.org/).
+To develop the book, it's recommended to use `uv`.
+Run `uv run jupyter lab` to start Jupyter, and then navigate to the `book` directory.
+Then right-click on one of the chapter's `.md` files and select "Open With" > "Jupytext Notebook".
+All cells can be edited / run directly in this interface.
+
 To build the book locally run:
 
 ```bash
@@ -17,13 +24,8 @@ jupyter book start --execute
 
 This command will print a link that can be opened in a web browser to preview the book locally.
 
-To develop the book, it's recommended to use `uv`.
-Run `uv run jupyter lab` to start Jupyter, and then navigate to the `book` directory.
-Then right-click on one of the chapter's `.md` files and select "Open With" > "Jupytext Notebook".
-All cells can be edited / run directly in this interface.
-
 ## Funding
 
-This project is funded by the [OSCARS project](https://oscars-project.eu/), which has received funding from the European Commission’s Horizon Europe Research and Innovation programme under grant agreement No. 101129751.
+The creation of this project was funded by the [OSCARS project](https://oscars-project.eu/), which received funding from the European Commission’s Horizon Europe Research and Innovation programme under grant agreement No. 101129751.
 
 ![OSCARS and EU logos](book/images/OSCARS-logo-EUflag.png)
