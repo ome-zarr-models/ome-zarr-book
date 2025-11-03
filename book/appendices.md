@@ -10,8 +10,6 @@ kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
   name: python3
-authors:
-  - id: dstansby
 ---
 
 # Appendices
@@ -35,6 +33,7 @@ There are many different viewers available for OME-Zarr images - see a full [lis
 A good Python-based option is [`napari`](https://napari.org/stable/) - see [installation instructions](https://napari.org/stable/tutorials/fundamentals/installation.html#napari-installation) on their website.
 
 By default, `napari` supports opening Zarr arrays e.g.
+
 ```python
 import napari
 
