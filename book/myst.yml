@@ -1,6 +1,6 @@
 version: 1
 project:
-  title: Working with enormous 3D imaging datasets
+  title: An Introduction to OME-Zarr for Big Bioimaging Data
   authors:
     - name: David Stansby
       id: dstansby
