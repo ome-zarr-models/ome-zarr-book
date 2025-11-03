@@ -63,6 +63,6 @@ If you want to you can [download the Python requirements](https://raw.githubuser
 ## Acknowledgements
 
 The creation of this book was funded by the [Handling Enormous Files from Tomographic Imaging Experiments (HEFTIE) project](https://oscars-project.eu/projects/heftie-handling-enormous-files-tomographic-imaging-experiments).
-HEFTIE is funded by the [OSCARS project](https://oscars-project.eu/), which has received funding from the European Commission’s Horizon Europe Research and Innovation programme under grant agreement No. 101129751.
+HEFTIE was funded by the [OSCARS project](https://oscars-project.eu/), which received funding from the European Commission’s Horizon Europe Research and Innovation programme under grant agreement No. 101129751.
 ![OSCARS and EU logos](images/OSCARS-logo-EUflag.png)
 Thanks to Alessandro Felder for reviewing and providing helpful improvements and comments.
