@@ -15,6 +15,8 @@ project:
     - file: 3-processing.md
     - file: 4-export.md
     - file: appendices.md
+  settings:
+    output_matplotlib_strings: 'remove'
 site:
   options:
     logo: images/logo.svg
