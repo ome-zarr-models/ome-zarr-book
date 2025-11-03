@@ -44,7 +44,7 @@ project:
     - file: appendices.md
 site:
   options:
-    logo: images/heftie.svg
+    logo: images/logo.svg
     folders: true
   # Temporarily hash-pin the theme.
   # See: https://github.com/jupytercon/jupytercon2025-developingextensions/issues/6
