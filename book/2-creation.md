@@ -12,7 +12,7 @@ kernelspec:
   name: python3
 ---
 
-# Creating chunked datasets
+# Creating OME-Zarr images
 
 +++
 
