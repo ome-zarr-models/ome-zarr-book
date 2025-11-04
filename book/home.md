@@ -41,7 +41,7 @@ The tools and methods in this texbook are tailored to working with big imaging d
 Tackling this data adds complexity to the tools and methods, so if you have smaller data it might be easier to use other file formats and tools.
 See the [Introduction to Bioimage Analysis textbook](https://bioimagebook.github.io) for other options.
 
-## Using this book
+## Reading this book
 
 ### Pre-requisites
 
