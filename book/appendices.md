@@ -1,32 +1,13 @@
----
-jupytext:
-  formats: md:myst
-  text_representation:
-    extension: .md
-    format_name: myst
-    format_version: 0.13
-    jupytext_version: 1.16.4
-kernelspec:
-  display_name: Python 3 (ipykernel)
-  language: python
-  name: python3
----
-
 # Appendices
 
 ## OME-Zarr creation libraries
 
-A number of libraries exist for creating OME-Zarr datasets from existing data.
-This table lists them, and drawbacks when working with 3D imaging data.
-
-| Library                                                   | Drawbacks                                                                                                     |
-| --------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| [ome-zarr-py](https://github.com/ome/ome-zarr-py)         | Not able to correctly downsample 3D images (see [issue #262](https://github.com/ome/ome-zarr-py/issues/262)). |
-| [ngff-zarr ](https://ngff-zarr.readthedocs.io/en/stable/) |                                                                                                               |
+There are many different creation software libraries available for OME-Zarr images - see a full [list in the NGFF documentation](https://ngff.openmicroscopy.org/tools/index.html#dataset-reading-writing).
+When choosing a tool to write OME-Zarr data, you should be aware of how it handles memory, in particular if it reads entire images into memory at once or not.
 
 ## OME-Zarr visualisation
 
-There are many different viewers available for OME-Zarr images - see a full [list in the NGFF documentation](https://ngff.openmicroscopy.org/tools/index.html#image-viewers).
+There are many different viewers available for OME-Zarr images - see a full [list in the NGFF documentation](https://ngff.openmicroscopy.org/tools/index.html#dataset-viewers).
 
 ### Napari
 
@@ -46,5 +27,3 @@ napari.run()
 ```
 
 To open OME-Zarr images, you will need to install the [napari-ome-zarr plugin](https://napari-hub.org/plugins/napari-ome-zarr).
-
-Note: `napari`'s support for viewing large, multi-resolution images is still being developed / improved over time. You may find it difficult to browse very large Zarr images through this interface - if so, you may want to try other viewers such as [`webknossos`](https://home.webknossos.org/), [`neuroglancer`](https://github.com/google/neuroglancer) or [`BigDataViewer`](https://imagej.net/plugins/bdv/).
