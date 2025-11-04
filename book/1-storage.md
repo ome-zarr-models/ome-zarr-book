@@ -14,8 +14,9 @@ kernelspec:
 
 # Zarr and OME-Zarr
 
-This chapter gives an overview of how image data is stored on a computer, and the challenges of storing and using huge 3D imaging data.
+This chapter gives an overview of how image data is stored on a computer, and the challenges of storing and using huge imaging data.
 It then uses these challenges to motivate and explain the development of the modern image storage formats, _Zarr_ and _OME-Zarr_.
+Throughout this book the example data used is 3D, but the same concepts and tools apply to images with a different number of dimensions.
 
 ## Storing data
 
@@ -62,7 +63,7 @@ print("...")
 Because we have an image with 1024 pixels, and each pixel is stored in 16 bits (2 bytes), we have a total of 1024$\times$2 = 2048 bytes.
 Above you can see the bits written out for the first ten bytes of the image.
 
-## Saving images
+## Saving 2D images
 
 So far the image we've worked on has been stored in the random access memory (RAM) on our computer.
 RAM is volatile, which means it's erased when it loses power, so if we want to save our image or send it to someone else we have to save it to a file that lives on persistent storage (e.g., a hard drive).
@@ -181,9 +182,9 @@ ax.set_title("Difference between original data and JPEG data");
 We've seen how to store 2D images, and the different compression options available.
 Introducing data compression can make reading and writing images slower, but reduces the filesize.
 Lossless compression saves the data without sacrificing any accuracy, and lossy compression results in even smaller file sizes but loses the original data values.
-In the next section we'll explore how to store 3D images.
+In the next section we'll explore how to store images.
 
-## Storing large 3D data
+## Storing large data
 
 One easy way of storing 3D data is to save it as a stack of 2D images.
 As an example, if we have an image with shape (10, 10, 20), we could save it to 20 2D image files, each of which has shape (10, 10).
@@ -214,10 +215,10 @@ def color_chunk_figure(*, image_shape: tuple[int, int, int], chunk_shape: tuple[
 color_chunk_figure(image_shape=(10, 10, 20), chunk_shape=(10, 10, 1))
 ```
 
-One way of thinking about this is that we are splitting the 3D image up into _chunks_, and each chunk is saved to a single file.
-In this case each chunk has shape `(nx, ny, 1)`, where `nx` and `ny` is the size of our 3D image in the x- and y- dimensions.
+One way of thinking about this is that we are splitting the image up into _chunks_, and each chunk is saved to a single file.
+In this case each chunk has shape `(nx, ny, 1)`, where `nx` and `ny` is the size of our image in the x- and y- dimensions.
 
-If we want to fetch a small cube of data from this 3D image, say shape `(2, 2, 2)`, then we have to read and de-compress the two files that contain this data, and then we end up throwing away most of the data we've read in.
+If we want to fetch a small cube of data from this image, say shape `(2, 2, 2)`, then we have to read and de-compress the two files that contain this data, and then we end up throwing away most of the data we've read in.
 This is illustrated below - to get the data values at just 8 pixels (the red cubes), we have to read in 200 pixels in total (the orange cubes).
 
 ```{code-cell} ipython3
@@ -331,7 +332,7 @@ ax.set_title("Chunk shape = (2, 2, 3)")
 Much easier and quicker to load!
 In Chapter 2 we'll see how to create a Zarr dataset, and see how the actual files are laid out when they're saved.
 
-Zarr is a file format that can be used to store 3D imaging data that breaks down the image into (configurably sized) chunks. Each chunk is saved to it's own file, reducing the amount of data reading needed when only viewing a small portion of the image.
+Zarr is a file format that can be used to store imaging data that breaks down the image into (configurably sized) chunks. Each chunk is saved to it's own file, reducing the amount of data reading needed when only viewing a small portion of the image.
 
 +++
 
@@ -371,7 +372,7 @@ If you're familiar with Google maps it works on a similar principle - as you zoo
 
 ## Conclusion
 
-In this chapter we've seen the differences between different image compression options (lossless and lossy), and explored how the Zarr and OME-Zarr data formats can be used to store large 3D imaging data.
+In this chapter we've seen the differences between different image compression options (lossless and lossy), and explored how the Zarr and OME-Zarr data formats can be used to store large imaging data.
 In the next chapter, we'll step through some practical examples of creating Zarr and OME-Zarr datasets.
 
 For a more in-depth discussion of files, file formats, and data compression, see [Chapter 6 of "Introduction to Bioimage Analysis"](https://bioimagebook.github.io/chapters/1-concepts/6-files/files.html).

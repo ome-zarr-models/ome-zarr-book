@@ -14,8 +14,8 @@ kernelspec:
 
 # Exporting
 
-In this chapter we'll look at how to convert sub-volumes of 3D Zarr images to other file formats.
-The use case for this is allow users to extract sub-volumes of large 3D images into a preferred file format, perform some analysis/processing on the sub-volume using their preferred tools and then copy the results back in-place to the original Zarr image.
+In this chapter we'll look at how to convert sub-volumes of Zarr images to other file formats.
+The use case for this is allow users to extract sub-volumes of large images into a preferred file format, perform some analysis/processing on the sub-volume using their preferred tools and then copy the results back in-place to the original Zarr image.
 
 Note: This process is more complex for OME-Zarr images that have a series of different resolution levels.
 When writing the processed sub-volume back to the OME-Zarr image, you will need to ensure that the resolution levels are updated correctly.
