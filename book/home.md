@@ -31,7 +31,7 @@ authors:
 
 # An Introduction to OME-Zarr for Big Bioimaging Data
 
-This book tries to explain the theory and practice behind handling large bioimaging datasets using the OME-Zarr data format.
+This book tries to explain the theory and practice behind handling large bioimaging datasets using the [OME-Zarr data format](https://ngff.openmicroscopy.org/) [@10.1007/s00418-023-02209-1].
 
 It is written for anyone working with bioimaging data that is 'big'.
 This means too big to transfer the data quickly from where it's stored to where you need it in one go.
