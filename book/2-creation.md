@@ -189,9 +189,9 @@ ome_zarr_image = Image.new(
     array_specs = [ArraySpec.from_zarr(zarr_array)],
     paths = ["level0"],
     axes = [
-        Axis(name="x", type="space", unit="um"),
-        Axis(name="y", type="space", unit="um"),
-        Axis(name="z", type="space", unit="um")
+        Axis(name="x", type="space", unit="micrometer"),
+        Axis(name="y", type="space", unit="micrometer"),
+        Axis(name="z", type="space", unit="micrometer")
     ],
     global_scale = [voxel_size, voxel_size, voxel_size],
     scales = [[1, 1, 1]],
@@ -258,9 +258,9 @@ multiscale_image = Image.new(
     array_specs = downsampled_specs,
     paths = [f"level{d}" for d in downsample_levels],
     axes = [
-        Axis(name="x", type="space", unit="um"),
-        Axis(name="y", type="space", unit="um"),
-        Axis(name="z", type="space", unit="um")
+        Axis(name="x", type="space", unit="micrometer"),
+        Axis(name="y", type="space", unit="micrometer"),
+        Axis(name="z", type="space", unit="micrometer")
     ],
     global_scale = [voxel_size, voxel_size, voxel_size],
     scales = [[2**d, 2**d, 2**d] for d in downsample_levels],
