@@ -74,6 +74,8 @@ There are lots of different ways you can contribute:
 
 The textbook is not complete; here are chapters we would like to add:
 
+- Update the textbook to use OME-Zarr 0.5 (currently it uses OME-Zarr 0.4).
+- Add an explanation of sharding in OME-Zarr 0.5.
 - Add a chapter explaining image containers in OME-Zarr (Zarr groups containing more than one OME-Zarr image), including high content screening and label groups.
 - Expand the "Exporting" chapter to explain how to process one resolution level, and apply that processing to many other resolution levels of a OME-Zarr image.
 
