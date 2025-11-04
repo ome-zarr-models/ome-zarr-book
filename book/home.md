@@ -75,6 +75,7 @@ There are lots of different ways you can contribute:
 The textbook is not complete; here are chapters we would like to add:
 
 - Add a chapter explaining image containers in OME-Zarr (Zarr groups containing more than one OME-Zarr image), including high content screening and label groups.
+- Expand the "Exporting" chapter to explain how to process one resolution level, and apply that processing to many other resolution levels of a OME-Zarr image.
 
 If you would like to write a chapter, or propose another new chapter to add to the roadmap, please get in touch!
 
