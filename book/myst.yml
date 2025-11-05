@@ -2,6 +2,9 @@ version: 1
 project:
   title: An Introduction to OME-Zarr for Big Bioimaging Data
   github: ome-zarr-models/ome-zarr-book
+  license:
+    code: BSD-3-Clause
+    content: CC-BY-4.0
   bibliography:
     - references.bib
   exports:
