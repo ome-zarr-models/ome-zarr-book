@@ -5,8 +5,6 @@ project:
   license:
     code: BSD-3-Clause
     content: CC-BY-4.0
-  bibliography:
-    - references.bib
   exports:
     - format: pdf
       template: plain_latex_book
