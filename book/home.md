@@ -74,6 +74,7 @@ There are lots of different ways you can contribute:
 
 The textbook is not complete; here are chapters we would like to add:
 
+- Finish the downsampling and upsampling parts of chapter 3.
 - Update the textbook to use OME-Zarr 0.5 (currently it uses OME-Zarr 0.4).
 - Add an explanation of sharding in OME-Zarr 0.5.
 - Add a chapter explaining image containers in OME-Zarr (Zarr groups containing more than one OME-Zarr image), including high content screening and label groups.
