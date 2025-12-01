@@ -5,7 +5,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.16.4
+    jupytext_version: 1.18.1
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -38,26 +38,41 @@ import zarr
 
 from data_helpers import load_heart_data, plot_slice
 
-zarr_array = load_heart_data(array_type="zarr")
+zarr_array_on_disk = load_heart_data(array_type="zarr")
+```
 
-print(f"Zarr array store: {zarr_array.store}")
-print(f"Zarr array shape: {zarr_array.shape}")
-print(f"Zarr array dtype: {zarr_array.dtype}")
-print(f"Zarr array chunks: {zarr_array.chunks}")
-print(f"Zarr array size: {(zarr_array.nbytes / 1e6):.3f} MB")
-
+```{code-cell} ipython3
+print(f"Zarr array store: {zarr_array_on_disk.store}")
+print(f"Zarr array shape: {zarr_array_on_disk.shape}")
+print(f"Zarr array dtype: {zarr_array_on_disk.dtype}")
+print(f"Zarr array chunks: {zarr_array_on_disk.chunks}")
+print(f"Zarr array size: {(zarr_array_on_disk.nbytes / 1e6):.3f} MB")
 ```
 
 The output above shows that we have created a Zarr array object, but importantly, the array data has not been loaded into memory yet but still lives in a directory store.
 This lazy loading approach is one of the key advantages of Zarr - you can work with arrays much larger than your available RAM.
 
+In this case we are editing the data later and we don't want to modify our original data, we'll create a copy in memory.
+
+```{code-cell} ipython3
+import zarr.storage
+
+memory_store = zarr.storage.MemoryStore()
+# Create an empty array like the original array
+zarr_array = zarr.empty_like(zarr_array_on_disk, store=memory_store)
+# Copy all the data from the original array
+zarr_array[:] = zarr_array_on_disk[:]
+
+print(f"New Zarr array store: {zarr_array.store}");
+```
+
 Now let's extract a small sub-volume from the Zarr array. This operation will only load the requested slice into memory as a NumPy array, leaving the rest of the data untouched:
 
 ```{code-cell} ipython3
 subvolume_slice = (
-    slice(40, 50),
+    slice(30, 80),
     slice(50, 60),
-    slice(70, 75),
+    slice(40, 47),
 )
 numpy_array = zarr_array[subvolume_slice]
 
@@ -81,14 +96,24 @@ The `imageio` library can be used to then read the TIFF file back into a NumPy a
 ```{code-cell} ipython3
 # Loading the result back into a NumPy array if processed with another tool:
 # sub_array = iio.imread("image_file.tiff", plugin='tifffile')
-# This simulates a processed sub-volume
+```
+
+```{code-cell} ipython3
+# This simulates a processed sub-volume, where all the data values have been set to zero
 sub_array = zarr.zeros_like(numpy_array)
 ```
 
 which can then be copied back in place to the original Zarr array.
+The following two plots show the original data (still stored on disk), and the modified data (stored in memory).
+In the modified data you can see that a rectangle has been edited and all values set to zero in that region.
 
 ```{code-cell} ipython3
-# zarr_array[subvolume_slice] = sub_array
+zarr_array[subvolume_slice] = sub_array
 ```
 
-Note that this final step is commented out because we don't want to edit the sample data used in this chapter, but if it was un-commented the data saved to disk would be edited.
+```{code-cell} ipython3
+from data_helpers import plot_slice
+
+plot_slice(zarr_array_on_disk, z_idx=45)
+plot_slice(zarr_array, z_idx=45)
+```
