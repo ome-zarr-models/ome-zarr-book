@@ -54,12 +54,13 @@ This lazy loading approach is one of the key advantages of Zarr - you can work w
 
 In this chapter we don't want to modify the copy of the data stored on disk (because it is used in other chapters of this book), so we'll create a copy of the array in memory.
 For large arrays this might not be possible, so you may need to create a new array with the data stored on disk instead.
+
 ```{code-cell} ipython3
 import zarr.storage
 
 memory_store = zarr.storage.MemoryStore()
 # Create an empty array like the original array
-zarr_array = zarr.empty_like(zarr_array_on_disk, store=memory_store)
+zarr_array = zarr.empty_like(zarr_array_on_disk, store=memory_store, zarr_format=2)
 # Copy all the data from the original array
 zarr_array[:] = zarr_array_on_disk[:]
 
@@ -116,4 +117,8 @@ from data_helpers import plot_slice
 
 plot_slice(zarr_array_on_disk, z_idx=45)
 plot_slice(zarr_array, z_idx=45)
+```
+
+```{code-cell} ipython3
+
 ```
