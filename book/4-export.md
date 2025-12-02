@@ -53,7 +53,7 @@ The output above shows that we have loaded a Zarr array where the data lives on 
 This lazy loading approach is one of the key advantages of Zarr - you can work with arrays much larger than your available RAM.
 
 I this chapter we don't want to modify the copy of the data stored on disk (because it is used in other chapters of this book), so we'll create a copy of the array in memory.
-This will make a copy of all the array data in memory. For large arrays this might not be possible, so you may need to create a new array with the data stored on disk instead.
+For large arrays this might not be possible, so you may need to create a new array with the data stored on disk instead.
 ```{code-cell} ipython3
 import zarr.storage
 
