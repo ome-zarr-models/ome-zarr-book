@@ -5,7 +5,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.17.3
+    jupytext_version: 1.18.1
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -86,9 +86,9 @@ For a list of available stores see the [`zarr.storage` documentation](https://za
 Here we'll use a in memory store.
 
 ```{code-cell} ipython3
-import zarr
+import zarr.storage
 
-store = zarr.MemoryStore()
+store = zarr.storage.MemoryStore()
 zarr_array = array_spec.to_zarr(store=store, path="/")
 zarr_array
 ```
@@ -131,7 +131,7 @@ temp_path = Path(temp_dir.name)
 print(f"Created temporary directory at {temp_path}")
 print(f"Directory contents before saving: {get_directory_contents(temp_path)}")
 
-store = zarr.DirectoryStore(temp_dir.name)
+store = zarr.storage.LocalStore(temp_dir.name)
 zarr_array = array_spec.to_zarr(store=store, path="/")
 print(f"Directory contents after creating array: {get_directory_contents(temp_path)}")
 
@@ -147,7 +147,7 @@ These folders store the array data.
 For the rest of the tutorial we'll switch back to storing the array in memory.
 
 ```{code-cell} ipython3
-store = zarr.MemoryStore()
+store = zarr.storage.MemoryStore()
 zarr_array = array_spec.to_zarr(store=store, path="/")
 zarr_array[:] = heart_image[:]
 temp_dir.cleanup()
@@ -204,7 +204,7 @@ print(ome_zarr_image)
 As before, we can write this (empty) zarr group to a store:
 
 ```{code-cell} ipython3
-ome_store = zarr.MemoryStore()
+ome_store = zarr.storage.MemoryStore()
 ome_group = ome_zarr_image.to_zarr(ome_store, path='')
 print(ome_group)
 ```
@@ -273,7 +273,7 @@ print(multiscale_image)
 As before, we'll save this to to a store, so we can then write the array data
 
 ```{code-cell} ipython3
-multiscale_store = zarr.MemoryStore()
+multiscale_store = zarr.storage.MemoryStore()
 multiscale_group = multiscale_image.to_zarr(multiscale_store, path='')
 print(multiscale_group)
 ```
