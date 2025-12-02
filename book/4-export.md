@@ -28,7 +28,7 @@ When writing the processed sub-volume back to the OME-Zarr image you have to ens
 To start with we'll load our heart sample dataset as a Zarr array and then extract a smaller volume as a NumPy array.
 
 :::{note}
-This sample data is only 200MB so the entire dataset can be loaded into memory.
+This sample data is only 2MB so the entire dataset can be loaded into memory.
 If you have larger data you will need to keep the extracted volume small enough to fit into memory, or extract it as a series of smaller chunks.
 :::
 
