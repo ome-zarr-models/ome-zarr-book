@@ -49,11 +49,11 @@ print(f"Zarr array chunks: {zarr_array_on_disk.chunks}")
 print(f"Zarr array size: {(zarr_array_on_disk.nbytes / 1e6):.3f} MB")
 ```
 
-The output above shows that we have created a Zarr array object, but importantly, the array data has not been loaded into memory yet but still lives in a directory store.
+The output above shows that we have loaded a Zarr array where the data lives on disk.
 This lazy loading approach is one of the key advantages of Zarr - you can work with arrays much larger than your available RAM.
 
-In this case we are editing the data later and we don't want to modify our original data, we'll create a copy in memory.
-
+I this chapter we don't want to modify the copy of the data stored on disk (because it is used in other chapters of this book), so we'll create a copy of the array in memory.
+This will make a copy of all the array data in memory. For large arrays this might not be possible, so you may need to create a new array with the data stored on disk instead.
 ```{code-cell} ipython3
 import zarr.storage
 
