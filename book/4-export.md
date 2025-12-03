@@ -52,7 +52,7 @@ print(f"Zarr array size: {(zarr_array_on_disk.nbytes / 1e6):.3f} MB")
 The output above shows that we have loaded a Zarr array where the data lives on disk.
 This lazy loading approach is one of the key advantages of Zarr - you can work with arrays much larger than your available RAM.
 
-I this chapter we don't want to modify the copy of the data stored on disk (because it is used in other chapters of this book), so we'll create a copy of the array in memory.
+In this chapter we don't want to modify the copy of the data stored on disk (because it is used in other chapters of this book), so we'll create a copy of the array in memory.
 For large arrays this might not be possible, so you may need to create a new array with the data stored on disk instead.
 ```{code-cell} ipython3
 import zarr.storage
@@ -89,7 +89,7 @@ We would use the `imageio` library to do this, but for simplicity here we won't 
 # iio.imwrite("image_file.tiff", np_array, plugin='tifffile')
 ```
 
-A this point some processing can be done on the sub-volume TIFF files.
+At this point some processing can be done on the sub-volume TIFF files.
 For the purposes of this chapter we'll fake some processing by creating a sub-array of the same shape as the original sub-volume, but filled with zeros.
 The `imageio` library can be used to then read the TIFF file back into a NumPy array,
 
