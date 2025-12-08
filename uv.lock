@@ -584,7 +584,7 @@ wheels = [
 
 [[package]]
 name = "jupyter-book"
-version = "2.0.0b3"
+version = "2.1.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "ipykernel" },
@@ -593,9 +593,9 @@ dependencies = [
     { name = "nodeenv" },
     { name = "platformdirs" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/49/d1/6e53124c8a98ea39192fff5a162aa239ff719a8aa10f0f0e5bf3bb466f5c/jupyter_book-2.0.0b3.tar.gz", hash = "sha256:f55e23cc33721b13142e42753a28fd145158b97bcef2a513f7fcd2cc403f72f6", size = 14475767, upload-time = "2025-08-20T11:06:17.981Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/9d/ef/618a3080c9c2f76f6d17212b7954db448d7f92da6459450a6acce1e0d596/jupyter_book-2.1.0.tar.gz", hash = "sha256:f42b6f264e6e270b07362f4430ef671edccbb1be36cd0872afd231c642a4ba7e", size = 14440795, upload-time = "2025-12-05T13:16:57.496Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/c7/1b/36d46d9da0fb50b9f584f3a0d93fad245e65d3fb46ba3d7e653b541c3eef/jupyter_book-2.0.0b3-py3-none-any.whl", hash = "sha256:ca01be03a4e5d54f7bfef1150837052ccb3ea3f8810a2687db59171f46ef30d0", size = 2606638, upload-time = "2025-08-20T11:06:14.953Z" },
+    { url = "https://files.pythonhosted.org/packages/69/0a/066cacdbe5fa68a39df245cd91db2a77e7485cb4c94d8c48cc3e8ed02e45/jupyter_book-2.1.0-py3-none-any.whl", hash = "sha256:cdf54323e0b5c0e1d9a6972742ac2dbfea9f7617e20f58113dc25cc85b7ac4d9", size = 2599900, upload-time = "2025-12-05T13:16:54.292Z" },
 ]
 
 [[package]]
@@ -1055,7 +1055,7 @@ dev = [
 requires-dist = [
     { name = "imageio", extras = ["tifffile"], specifier = "==2.37.2" },
     { name = "joblib", specifier = "==1.5.2" },
-    { name = "jupyter-book", specifier = "==2.0.0b3" },
+    { name = "jupyter-book", specifier = "==2.1.0" },
     { name = "matplotlib", specifier = "==3.10.7" },
     { name = "numcodecs", specifier = "==0.15.1" },
     { name = "numpy", specifier = "==2.3.5" },
