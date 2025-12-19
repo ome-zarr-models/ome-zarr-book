@@ -178,7 +178,7 @@ Alternatively `joblib` has a builtin class, `joblib.Parallel`, to automatically 
 The `n_jobs` parameter controls the maximum number of concurrently running jobs.
 Commonly you'll either want to set `n_jobs=-1` to use all available CPUs, or set it to a custom number to limit the memory usage of multiple jobs running at the same time.
 
-[^joblib-backend]: Because of the way this textbook is built, we've had to manually specify `backend='threading'`. You shouldn't have to specify the `backend` parameter when running code yourself - for more info see the [`joblib.Parallel` documentation](https://joblib.readthedocs.io/en/stable/generated/joblib.Parallel.html#joblib-parallel).
+[^joblib-backend]: Because we are working with an image in memory, we've had to manually specify `backend='threading'`. When working with images on disk, you shouldn't have to specify the `backend` parameter - for more info see the [`joblib.Parallel` documentation](https://joblib.readthedocs.io/en/stable/generated/joblib.Parallel.html#joblib-parallel).
 
 ```{code-cell} ipython3
 jobs = [
