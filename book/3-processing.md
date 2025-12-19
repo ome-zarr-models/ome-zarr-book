@@ -50,10 +50,6 @@ Before we get into this we'll setup a few helper functions.
 First, a function that generates the array indices of every chunk in a Zarr array:
 
 ```{code-cell} ipython3
-from rich import print as pprint
-```
-
-```{code-cell} ipython3
 import itertools
 from typing import Generator
 
@@ -253,6 +249,8 @@ plot_slice(clipped_image, z_idx=65, ax=axs[1])
 Then setup the jobs...
 
 ```{code-cell} ipython3
+from rich import print as pprint
+
 jobs = chunkwise_jobs(clip, input_array=heart_image, output_array=clipped_image)
 print(f"Number of jobs: {len(jobs)}")
 print("First job:")
