@@ -46,7 +46,7 @@ json5==0.12.1
 jsonpointer==3.0.0
 jsonschema==4.25.1
 jsonschema-specifications==2025.9.1
-jupyter-book==2.0.0b3
+jupyter-book==2.0.2
 jupyter-client==8.6.3
 jupyter-core==5.8.1
 jupyter-events==0.12.0
