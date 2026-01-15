@@ -109,7 +109,7 @@ The following two plots show the original data (still stored on disk), and the m
 In the modified data you can see that a rectangle has been edited and all values set to zero in that region.
 
 ```{code-cell} ipython3
-zarr_array[subvolume_slice] = sub_array
+zarr_array[subvolume_slice] = sub_array[:]
 ```
 
 ```{code-cell} ipython3
