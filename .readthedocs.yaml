@@ -12,10 +12,10 @@ build:
       # Import matplotlib to build the font cache
       # Otherwise, the first time it's imported cell execution
       # can timeout
-      - python -c "import matplotlib"
+      - uv run python -c "import matplotlib"
 
     build:
       html:
-        - cd book/ && jupyter book build --html --execute --strict --ci
+        - cd book/ && uv run jupyter book build --html --execute --strict --ci
         - mkdir -p $READTHEDOCS_OUTPUT
         - mv ./book/_build/html $READTHEDOCS_OUTPUT
