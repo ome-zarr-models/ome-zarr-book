@@ -66,7 +66,7 @@ Some of the code examples provided to explain concepts might be a useful startin
 
 ### Running code
 
-If you want to you can [download the Python requirements](https://raw.githubusercontent.com/ome-zarr-models/ome-zarr-book/refs/heads/main/requirements.txt) used to generate the output in this book, and use them to create a fresh Python environment.
+If you want to you can [download the Python requirements](https://raw.githubusercontent.com/ome-zarr-models/ome-zarr-book/refs/heads/main/requirements.txt) used to generate the output in this book, and use them to create a fresh Python environment. You will also need to download data_helpers.py and the sample data set - the easiest way to do this is clone or download the [GitHub repo](https://github.com/ome-zarr-models/ome-zarr-book).
 
 ## Contributing
 
