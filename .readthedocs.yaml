@@ -16,6 +16,9 @@ build:
 
     build:
       html:
-        - cd book/ && uv run jupyter book --debug build --html --execute --strict --ci
+        - cd book
+        - pwd
+        - uv pip list
+        - uv run jupyter book --debug build --html --execute --strict --ci
         - mkdir -p $READTHEDOCS_OUTPUT
         - mv ./book/_build/html $READTHEDOCS_OUTPUT
