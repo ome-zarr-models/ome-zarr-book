@@ -1,21 +1,30 @@
 version: 2
 build:
-  os: ubuntu-22.04
+  os: ubuntu-24.04
   tools:
     python: "3.12"
     nodejs: "22"
   jobs:
+    pre_create_environment:
+      - asdf plugin add uv
+      - asdf install uv latest
+      - asdf global uv latest
+    create_environment:
+      - uv venv "${READTHEDOCS_VIRTUALENV_PATH}"
+    install:
+      - UV_PROJECT_ENVIRONMENT="${READTHEDOCS_VIRTUALENV_PATH}" uv sync --frozen
     post_install:
       - npm install -g @mermaid-js/mermaid-cli
-      - pip install uv
-      - UV_PROJECT_ENVIRONMENT=$READTHEDOCS_VIRTUALENV_PATH uv sync --link-mode=copy
       # Import matplotlib to build the font cache
       # Otherwise, the first time it's imported cell execution
       # can timeout
-      - python -c "import matplotlib"
+      - uv run python -c "import matplotlib"
 
     build:
       html:
-        - cd book/ && jupyter book build --html --execute --strict --ci
+        - uv pip list
+        # Not sure why this line is needed; see https://github.com/readthedocs/readthedocs.org/issues/12501
+        - export HOST="127.0.0.1"
+        - cd book && pwd && uv run jupyter book --debug build --html --execute --strict --ci
         - mkdir -p $READTHEDOCS_OUTPUT
         - mv ./book/_build/html $READTHEDOCS_OUTPUT
