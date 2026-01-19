@@ -23,6 +23,8 @@ build:
     build:
       html:
         - uv pip list
+        # Not sure why this line is needed; see https://github.com/readthedocs/readthedocs.org/issues/12501
+        - export HOST=127.0.0.1
         - cd book && pwd && uv run jupyter book --debug build --html --execute --strict --ci
         - mkdir -p $READTHEDOCS_OUTPUT
         - mv ./book/_build/html $READTHEDOCS_OUTPUT
