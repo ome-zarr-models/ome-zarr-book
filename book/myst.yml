@@ -14,11 +14,17 @@ project:
     - file: appendices.md
   settings:
     output_matplotlib_strings: 'remove'
+  error_rules:
+    - rule: link-resolves
+      severity: ignore
+      keys:
+        # For some reason this isn't resolving on ReadTheDocs
+        - 'https://forum.image.sc/t/an-ome-zarr-digital-textbook/117435'
 site:
   options:
     logo: images/logo.svg
     folders: true
   # Temporarily hash-pin the theme.
   # See: https://github.com/jupytercon/jupytercon2025-developingextensions/issues/6
-  template: "https://github.com/myst-templates/book-theme/archive/de4c1e9c09c6cd12fc529c1f22e8abf8e7f35381.zip"
-  # template: "book-theme"
+  # template: "https://github.com/myst-templates/book-theme/archive/de4c1e9c09c6cd12fc529c1f22e8abf8e7f35381.zip"
+  template: "book-theme"
