@@ -5,7 +5,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.16.4
+    jupytext_version: 1.18.1
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -239,7 +239,7 @@ from data_helpers import plot_slice
 import matplotlib.pyplot as plt
 
 heart_image = load_heart_data(array_type='zarr')
-clipped_image = zarr.zeros_like(heart_image)
+clipped_image = zarr.zeros_like(heart_image, zarr_format=2)
 
 fig, axs = plt.subplots(ncols=2)
 plot_slice(heart_image, z_idx=65, ax=axs[0])
@@ -330,7 +330,3 @@ If we're upsampling by a factor of two, then our output array will have double t
 +++
 
 ### Convolution
-
-```{code-cell} ipython3
-
-```
