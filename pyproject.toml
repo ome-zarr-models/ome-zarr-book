@@ -9,17 +9,17 @@ dependencies = [
     "jupyter-book==2.1.2",
     "matplotlib==3.10.8",
     "numcodecs==0.16.5",
-    "numpy==2.4.2",
+    "numpy==2.4.3",
     "zarr==3.1.5",
-    "rich==14.3.2",
-    "pydantic-zarr==0.8.4",
+    "rich==14.3.3",
+    "pydantic-zarr==0.9.1",
     "ome-zarr-models==1.5",
     "joblib==1.5.3",
-    "scipy==1.17.0",
+    "scipy==1.17.1",
 ]
 
 [tool.setuptools]
 packages = []
 
 [dependency-groups]
-dev = ["jupyter-ruff==0.3.1", "jupyterlab==4.5.4", "jupytext==1.19.1"]
+dev = ["jupyter-ruff==0.3.1", "jupyterlab==4.5.5", "jupytext==1.19.1"]
