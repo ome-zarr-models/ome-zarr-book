@@ -56,6 +56,7 @@ array_spec = ArraySpec(
     dtype=heart_image.dtype,
     chunks=(32, 32, 32),
     compressor=Zstd(level=5),
+    attributes={}
 )
 print(array_spec)
 ```
