@@ -88,7 +88,7 @@ pure-eval==0.2.3
 pycparser==2.23 ; implementation_name != 'PyPy'
 pydantic==2.12.5
 pydantic-core==2.41.5
-pydantic-zarr==0.8.4
+pydantic-zarr==0.9.1
 pygments==2.19.2
 pyparsing==3.2.5
 python-dateutil==2.9.0.post0
