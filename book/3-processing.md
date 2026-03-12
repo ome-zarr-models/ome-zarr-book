@@ -319,7 +319,7 @@ heart_image.shape
 def all_block_indices(
     array: zarr.Array, 
     block_size: tuple[int, ...], 
-    downsampling_factor: tuple[int, ...]
+    downsampling_factors: tuple[int, ...]
 ) -> dict[tuple[slice, ...], tuple[slice, ...]]:
     """
     Generate indices that represent all blocks in a Zarr Array. The block_size is given in chunks e.g.
@@ -343,7 +343,7 @@ def all_block_indices(
     output_slices = []
     for input_slice in input_slices:
         output_slice = tuple(
-            slice(input_slice[i].start // downsampling_factor[i], input_slice[i].stop // downsampling_factor[i])
+            slice(input_slice[i].start // downsampling_factors[i], input_slice[i].stop // downsampling_factors[i])
             for i in range(ndim)
         )
         output_slices.append(output_slice)
@@ -353,7 +353,7 @@ def all_block_indices(
 ```
 
 ```{code-cell} ipython3
-all_block_indices(heart_image, block_size, downsampling_factor)
+all_block_indices(heart_image, block_size, downsampling_factors)
 ```
 
 Then let's create an `apply_to_block` function that can apply any function to a single block.
@@ -392,8 +392,8 @@ def apply_to_block(
     input_block = np.pad(input_block, pad_width, mode="edge")
     
     processed_block = skimage.measure.block_reduce(
-        data, block_size=block_size, func=f
-    ).astype(data.dtype)
+        input_block, block_size=block_size, func=f
+    ).astype(input_block.dtype)
 
     print(f"Writing index {slc}...")
     output_array[output_slice] = processed_block
@@ -477,8 +477,10 @@ Then check the results:
 
 ```{code-cell} ipython3
 fig, axs = plt.subplots(ncols=2)
-plot_slice(heart_image, z_idx=65, ax=axs[0])
-plot_slice(downsampled_image, z_idx=65, ax=axs[1])
+
+slice_no = 66
+plot_slice(heart_image, z_idx=slice_no, ax=axs[0])
+plot_slice(downsampled_image, z_idx=slice_no // 2, ax=axs[1])
 ```
 
 ### Upsampling
