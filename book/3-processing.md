@@ -5,7 +5,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.18.1
+    jupytext_version: 1.19.1
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -299,6 +299,187 @@ If we're downsampling by a factor of two, then our output array will have half t
 ```
 
 +++
+
+Let's call each input region of 8 chunks a 'block'. First, we define the size of the the block, and the downsampling factors we want to use on each axis.
+
+```{code-cell} ipython3
+downsampling_factors = (2, 2, 2)
+block_size = (2, 2, 2)
+```
+
+```{code-cell} ipython3
+heart_image.chunks
+```
+
+```{code-cell} ipython3
+heart_image.shape
+```
+
+```{code-cell} ipython3
+def all_block_indices(
+    array: zarr.Array, 
+    block_size: tuple[int, ...], 
+    downsampling_factor: tuple[int, ...]
+) -> dict[tuple[slice, ...], tuple[slice, ...]]:
+    """
+    Generate indices that represent all blocks in a Zarr Array. The block_size is given in chunks e.g.
+    (2, 2, 2) is a block of 2x2x2 chunks.
+    """
+
+    input_to_output_slice = {}
+    ndim = len(array.shape)
+
+    input_indices = [range(0, array.shape[i], array.chunks[i] * block_size[i]) for i in range(ndim)]
+    chunk_corners = itertools.product(*input_indices)
+
+    input_slices = [
+        tuple(
+            slice(corner[i], min(corner[i] + array.chunks[i] * block_size[i], array.shape[i]))
+            for i in range(ndim)
+        )
+        for corner in chunk_corners
+    ]
+
+    output_slices = []
+    for input_slice in input_slices:
+        output_slice = tuple(
+            slice(input_slice[i].start // downsampling_factor[i], input_slice[i].stop // downsampling_factor[i])
+            for i in range(ndim)
+        )
+        output_slices.append(output_slice)
+
+    return dict(zip(input_slices, output_slices))
+    
+```
+
+```{code-cell} ipython3
+all_block_indices(heart_image, block_size, downsampling_factor)
+```
+
+Then let's create an `apply_to_block` function that can apply any function to a single block.
+
+```{code-cell} ipython3
+import skimage
+
+def apply_to_block(
+    f: Callable[[npt.NDArray[Any]], npt.NDArray[Any]],
+    input_array: zarr.Array,
+    output_array: zarr.Array,
+    block_size: tuple[int, ...],
+    input_slice: tuple[slice, ...],
+    output_slice: tuple[slice, ...]
+) -> None:
+    """
+    Copy a specific chunk of data from one array to another, applying a function in between.
+
+    Parameters
+    ----------
+    f :
+        Function to apply to slice of data.
+    input_array :
+        Array to read from.
+    output_array :
+        Array to write to.
+    chunk_index :
+        Array slice of data to process.
+    """
+    print(f"Reading index {slc}...")
+    input_block = input_array[input_slice]
+
+    # Pad to an even number
+    pads = np.array(input_block.shape) % 2
+    pad_width = [(0, p) for p in pads]
+    input_block = np.pad(input_block, pad_width, mode="edge")
+    
+    processed_block = skimage.measure.block_reduce(
+        data, block_size=block_size, func=f
+    ).astype(data.dtype)
+
+    print(f"Writing index {slc}...")
+    output_array[output_slice] = processed_block
+
+
+delayed_apply_to_block = joblib.delayed(apply_to_block)
+```
+
+Let's make a function similar to `chunkwise_jobs`, that creates one job per block of multiple chunks (in our case each block of 2x2x2 chunks).
+
+```{code-cell} ipython3
+def blockwise_jobs(
+    f: Callable[[npt.NDArray[Any]], npt.NDArray[Any]],
+    *,
+    input_array: zarr.Array,
+    output_array: zarr.Array,
+    block_size: tuple[int, ...],
+) -> list[joblib.delayed]:
+    """
+    Apply a function to all blocks of a Zarr array.
+
+    Parameters
+    ----------
+    f :
+        Function to apply to each block.
+    block_size:
+        The size of the block in chunks.
+    input_array :
+        Array to read from.
+    output_array :
+        Array to write to.
+    """
+
+    # Check chunk size is the same between the two arrays
+    if input_array.chunks != output_array.chunks:
+        raise ValueError(
+            f"Input chunk ({input_array.chunks}) != output chunks {output_array.chunks}"
+        )
+
+    input_to_output_indices = all_block_indices(input_array, block_size, downsampling_factors)
+        
+    return [
+        delayed_apply_to_block(f, input_array, output_array, block_size, input_slice, output_slice)
+        for input_slice, output_slice in input_to_output_indices.items()
+    ]
+```
+
+First, let's create our new empty output array - half the size of our input heart array, but with the same chunk size.
+
+```{code-cell} ipython3
+input_shape = heart_image.shape
+downsampled_image = zarr.zeros(
+    [input_shape[i] // downsampling_factors[i] for i, shape in enumerate(input_shape)],
+    chunks=heart_image.chunks,
+    zarr_format=2
+)
+print("input image shape", input_shape)
+print("output image shape", downsampled_image.shape)
+
+fig, axs = plt.subplots(ncols=2)
+plot_slice(heart_image, z_idx=65, ax=axs[0])
+plot_slice(downsampled_image, z_idx=65, ax=axs[1])
+```
+
+Then we setup the jobs as before, using `np.mean` as our downsampling function:
+
+```{code-cell} ipython3
+jobs = blockwise_jobs(np.mean, input_array=heart_image, output_array=downsampled_image, block_size=block_size)
+print(f"Number of jobs: {len(jobs)}")
+print("First job:")
+pprint(jobs[0])
+```
+
+Then run them all...
+
+```{code-cell} ipython3
+executor(jobs);
+```
+
+Then check the results:
+
+```{code-cell} ipython3
+fig, axs = plt.subplots(ncols=2)
+plot_slice(heart_image, z_idx=65, ax=axs[0])
+plot_slice(downsampled_image, z_idx=65, ax=axs[1])
+```
 
 ### Upsampling
 
