@@ -300,30 +300,21 @@ If we're downsampling by a factor of two, then our output array will have half t
 
 +++
 
-Let's call each input region of 8 chunks a 'block'. First, we define the size of the the block, and the downsampling factors we want to use on each axis.
+Let's call each input region of 8 chunks (2 x 2 x 2) a 'block':
 
 ```{code-cell} ipython3
-downsampling_factors = (2, 2, 2)
 block_size = (2, 2, 2)
 ```
 
-```{code-cell} ipython3
-heart_image.chunks
-```
-
-```{code-cell} ipython3
-heart_image.shape
-```
+Then, we define a function that can create a mapping from input slices to output slices. This should map each block in the input dataset to one chunk in the output dataset.
 
 ```{code-cell} ipython3
 def all_block_indices(
     array: zarr.Array, 
     block_size: tuple[int, ...], 
-    downsampling_factors: tuple[int, ...]
 ) -> dict[tuple[slice, ...], tuple[slice, ...]]:
     """
-    Generate indices that represent all blocks in a Zarr Array. The block_size is given in chunks e.g.
-    (2, 2, 2) is a block of 2x2x2 chunks.
+    Generate a dictionary that maps the location of input blocks to output chunks.
     """
 
     input_to_output_slice = {}
@@ -343,20 +334,19 @@ def all_block_indices(
     output_slices = []
     for input_slice in input_slices:
         output_slice = tuple(
-            slice(input_slice[i].start // downsampling_factors[i], input_slice[i].stop // downsampling_factors[i])
+            slice(input_slice[i].start // block_size[i], input_slice[i].stop // block_size[i])
             for i in range(ndim)
         )
         output_slices.append(output_slice)
 
     return dict(zip(input_slices, output_slices))
-    
 ```
 
 ```{code-cell} ipython3
-all_block_indices(heart_image, block_size, downsampling_factors)
+all_block_indices(heart_image, block_size)
 ```
 
-Then let's create an `apply_to_block` function that can apply any function to a single block.
+Then let's create a function that can process a single input block:
 
 ```{code-cell} ipython3
 import skimage
@@ -370,7 +360,7 @@ def apply_to_block(
     output_slice: tuple[slice, ...]
 ) -> None:
     """
-    Copy a specific chunk of data from one array to another, applying a function in between.
+    Apply a function to input_array[input_slice] and write to output_array[output_slice]
 
     Parameters
     ----------
@@ -380,14 +370,15 @@ def apply_to_block(
         Array to read from.
     output_array :
         Array to write to.
-    chunk_index :
-        Array slice of data to process.
+    block_size : size of input blocks
+    input_slice : slice of input
+    output_slice : slice of output
     """
     print(f"Reading index {slc}...")
     input_block = input_array[input_slice]
 
-    # Pad to an even number
-    pads = np.array(input_block.shape) % 2
+    # Pad to a multiple of the block size
+    pads = np.array(input_block.shape) % block_size
     pad_width = [(0, p) for p in pads]
     input_block = np.pad(input_block, pad_width, mode="edge")
     
@@ -402,7 +393,7 @@ def apply_to_block(
 delayed_apply_to_block = joblib.delayed(apply_to_block)
 ```
 
-Let's make a function similar to `chunkwise_jobs`, that creates one job per block of multiple chunks (in our case each block of 2x2x2 chunks).
+Let's make a function similar to `chunkwise_jobs`, that creates one job per block:
 
 ```{code-cell} ipython3
 def blockwise_jobs(
@@ -433,7 +424,7 @@ def blockwise_jobs(
             f"Input chunk ({input_array.chunks}) != output chunks {output_array.chunks}"
         )
 
-    input_to_output_indices = all_block_indices(input_array, block_size, downsampling_factors)
+    input_to_output_indices = all_block_indices(input_array, block_size)
         
     return [
         delayed_apply_to_block(f, input_array, output_array, block_size, input_slice, output_slice)
@@ -441,12 +432,12 @@ def blockwise_jobs(
     ]
 ```
 
-First, let's create our new empty output array - half the size of our input heart array, but with the same chunk size.
+Now that the required functions are set up - let's create our empty output image, which should be half the size of the input:
 
 ```{code-cell} ipython3
 input_shape = heart_image.shape
 downsampled_image = zarr.zeros(
-    [input_shape[i] // downsampling_factors[i] for i, shape in enumerate(input_shape)],
+    [input_shape[i] // block_size[i] for i, shape in enumerate(input_shape)],
     chunks=heart_image.chunks,
     zarr_format=2
 )
@@ -480,7 +471,7 @@ fig, axs = plt.subplots(ncols=2)
 
 slice_no = 66
 plot_slice(heart_image, z_idx=slice_no, ax=axs[0])
-plot_slice(downsampled_image, z_idx=slice_no // 2, ax=axs[1])
+plot_slice(downsampled_image, z_idx=slice_no // block_size[0], ax=axs[1])
 ```
 
 ### Upsampling
