@@ -7,8 +7,8 @@ argon2-cffi==25.1.0
 argon2-cffi-bindings==25.1.0
 arrow==1.4.0
 asttokens==3.0.1
-async-lru==2.2.0
-attrs==25.4.0
+async-lru==2.3.0
+attrs==26.1.0
 babel==2.18.0
 beautifulsoup4==4.14.3
 bleach==6.3.0
@@ -41,7 +41,7 @@ jedi==0.19.2
 jinja2==3.1.6
 joblib==1.5.3
 json5==0.13.0
-jsonpointer==3.0.0
+jsonpointer==3.1.0
 jsonschema==4.26.0
 jsonschema-specifications==2025.9.1
 jupyter-book==2.1.2
@@ -88,7 +88,7 @@ pure-eval==0.2.3
 pycparser==3.0 ; implementation_name != 'PyPy'
 pydantic==2.12.5
 pydantic-core==2.42.0
-pydantic-zarr==0.9.1
+pydantic-zarr==0.9.2
 pygments==2.19.2
 pyparsing==3.3.2
 python-dateutil==2.9.0.post0
@@ -116,7 +116,7 @@ tifffile==2026.3.3
 tinycss2==1.5.1
 tornado==6.5.5
 traitlets==5.14.3
-types-python-dateutil==2.9.0.20260305
+types-python-dateutil==2.9.0.20260323
 typing-extensions==4.15.0
 typing-inspection==0.4.2
 uri-template==1.3.0

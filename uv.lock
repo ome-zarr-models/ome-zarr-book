@@ -1050,7 +1050,7 @@ requires-dist = [
     { name = "numcodecs", specifier = "==0.16.5" },
     { name = "numpy", specifier = "==2.4.3" },
     { name = "ome-zarr-models", specifier = "==1.6" },
-    { name = "pydantic-zarr", specifier = "==0.9.1" },
+    { name = "pydantic-zarr", specifier = "==0.9.2" },
     { name = "rich", specifier = "==14.3.3" },
     { name = "scipy", specifier = "==1.17.1" },
     { name = "zarr", specifier = "==3.1.5" },
@@ -1254,16 +1254,16 @@ wheels = [
 
 [[package]]
 name = "pydantic-zarr"
-version = "0.9.1"
+version = "0.9.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "numpy" },
     { name = "packaging" },
     { name = "pydantic" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/c9/5e/d229a51194728917f47f983ff2481ed9ac6ebb2c7b9914c7c1a236707b67/pydantic_zarr-0.9.1.tar.gz", hash = "sha256:37e426eee465099e215d41a2e8dfbd7d8c13b5c26d1a9af2f8649a0549e2123e", size = 78789, upload-time = "2025-12-12T15:56:02.303Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/6a/19/ad4f22b7a395408c90cc0f213d70cf5b9ed5f3b0db2b319cacff93b66850/pydantic_zarr-0.9.2.tar.gz", hash = "sha256:59f536cbc456ff4dc64d887d651476e2a6a2ca9f3ea13228dce4e3aeb1cf00b9", size = 80379, upload-time = "2026-03-18T14:38:30.766Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/a2/11/d4ad8a19c8a4b94ce5f6594e7d8c2aea55b50f51351f52ed170b0b301baa/pydantic_zarr-0.9.1-py3-none-any.whl", hash = "sha256:a272b32a82f4c44d0bc97ddd395ec9be2c6ac55d549ca7265cba8cd1589502eb", size = 52501, upload-time = "2025-12-12T15:56:01.31Z" },
+    { url = "https://files.pythonhosted.org/packages/0e/f4/93a623ab5d2e1c20de0b43e60d6bd8df7704b39e88f5424b4191391a40d9/pydantic_zarr-0.9.2-py3-none-any.whl", hash = "sha256:8009b661cdce3e8283c26d281975432841a39fc8af8309f4ff66722e43850c6f", size = 52952, upload-time = "2026-03-18T14:38:29.684Z" },
 ]
 
 [[package]]
