@@ -6,20 +6,20 @@ readme = "README.md"
 requires-python = "==3.12.*"
 dependencies = [
     "imageio[tifffile]==2.37.3",
-    "jupyter-book==2.1.4",
-    "matplotlib==3.10.8",
+    "jupyter-book==2.1.5",
+    "matplotlib==3.11.0",
     "numcodecs==0.16.5",
-    "numpy==2.4.4",
-    "zarr==3.1.6",
+    "numpy==2.5.0",
+    "zarr==3.2.1",
     "rich==15.0.0",
-    "pydantic-zarr==0.9.2",
-    "ome-zarr-models==1.6",
+    "pydantic-zarr==0.10.0",
+    "ome-zarr-models==1.7",
     "joblib==1.5.3",
-    "scipy==1.17.1",
+    "scipy==1.18.0",
 ]
 
 [tool.setuptools]
 packages = []
 
 [dependency-groups]
-dev = ["jupyter-ruff==0.3.1", "jupyterlab==4.5.6", "jupytext==1.19.1"]
+dev = ["jupyter-ruff==0.3.1", "jupyterlab==4.6.1", "jupytext==1.19.4"]
