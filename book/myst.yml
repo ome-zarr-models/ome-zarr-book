@@ -10,6 +10,8 @@ project:
     - file: 1-storage.md
     - file: 2-creation.md
     - file: 3-processing.md
+      children:
+        - file: 3.1-parallel-examples.md
     - file: 4-export.md
     - file: appendices.md
   settings:

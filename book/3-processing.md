@@ -5,7 +5,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.18.1
+    jupytext_version: 1.19.1
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -270,63 +270,3 @@ fig, axs = plt.subplots(ncols=2)
 plot_slice(heart_image, z_idx=65, ax=axs[0])
 plot_slice(clipped_image, z_idx=65, ax=axs[1])
 ```
-
-### Downsampling
-
-If we're downsampling by a factor of two, then our output array will have half the shape of the input array. In 3D, eight input chunks will map to one output chunk.
-
-```{mermaid}
-    flowchart LR
-        input_1 --> output_i
-        input_2 --> output_i
-        input_3 --> output_i
-        input_4 --> output_i
-        input_5 --> output_i
-        input_6 --> output_i
-        input_7 --> output_i
-        input_8 --> output_i
-
-        output_i["Chunk i, j, k"]
-
-        input_1["Chunk 2i, 2j, 2k"]
-        input_2["Chunk 2i, 2j, 2k+1"]
-        input_3["Chunk 2i, 2j+1, 2k"]
-        input_4["Chunk 2i, 2j+1, 2k+1"]
-        input_5["Chunk 2i+1, 2j, 2k"]
-        input_6["Chunk 2i+1, 2j, 2k+1"]
-        input_7["Chunk 2i+1, 2j+1, 2k"]
-        input_8["Chunk 2i+1, 2j+1, 2k+1"]
-```
-
-+++
-
-### Upsampling
-
-If we're upsampling by a factor of two, then our output array will have double the shape of the input array. In 3D, each input chunk will map to 8 output chunks.
-
-```{mermaid}
-    flowchart LR
-        output_i --> input_1
-        output_i --> input_2
-        output_i --> input_3
-        output_i --> input_4
-        output_i --> input_5
-        output_i --> input_6
-        output_i --> input_7
-        output_i --> input_8
-
-        output_i["Chunk i, j, k"]
-
-        input_1["Chunk 2i, 2j, 2k"]
-        input_2["Chunk 2i, 2j, 2k+1"]
-        input_3["Chunk 2i, 2j+1, 2k"]
-        input_4["Chunk 2i, 2j+1, 2k+1"]
-        input_5["Chunk 2i+1, 2j, 2k"]
-        input_6["Chunk 2i+1, 2j, 2k+1"]
-        input_7["Chunk 2i+1, 2j+1, 2k"]
-        input_8["Chunk 2i+1, 2j+1, 2k+1"]
-```
-
-+++
-
-### Convolution
