@@ -5,12 +5,11 @@ authors:
     orcid: 0000-0002-1365-1908
     github: dstansby
     corresponding: true
-    email: d.stansby@ucl.ac.uk
     bluesky: "@dstansby.bsky.social"
     url: https://davidstansby.com
     affiliations:
       - id: ucl
-        institution: UCL
+        institution: University College London
         city: London
         ror: https://ror.org/02jx3x895
 
@@ -27,6 +26,10 @@ authors:
     github: K-Meech
     affiliations:
       - id: ucl
+exports:
+- format: cff
+  message: "If you want to cite this book, please use information in this citation."
+
 ---
 
 # An Introduction to OME-Zarr for Big Bioimaging Data

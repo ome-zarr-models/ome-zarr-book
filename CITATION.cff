@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+message: If you want to cite this book, please use information in this citation.
+title: An Introduction to OME-Zarr for Big Bioimaging Data
+authors:
+  - family-names: Stansby
+    given-names: David
+    affiliation: University College London
+    city: London
+    orcid: 0000-0002-1365-1908
+    website: https://davidstansby.com
+  - family-names: Gollifer
+    given-names: Ruaridh
+    affiliation: University College London
+    city: London
+    orcid: 0000-0001-9319-936X
+  - family-names: Meechan
+    given-names: Kimberly
+    affiliation: University College London
+    city: London
+    orcid: 0000-0003-4939-4170
+license: CC-BY-4.0
+license-url: https://creativecommons.org/licenses/by/4.0/
+repository: https://github.com/ome-zarr-models/ome-zarr-book
