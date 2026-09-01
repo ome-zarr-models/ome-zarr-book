@@ -9,13 +9,13 @@ dependencies = [
     "jupyter-book==2.1.6",
     "matplotlib==3.11.1",
     "numcodecs==0.16.5",
-    "numpy==2.5.1",
+    "numpy==2.5.2",
     "zarr==3.3.0",
     "rich==15.0.0",
     "pydantic-zarr==0.10.0",
-    "ome-zarr-models==1.7",
+    "ome-zarr-models==1.8.0",
     "joblib==1.5.3",
-    "scipy==1.18.0",
+    "scipy==1.18.1",
     "scikit-image==0.26.0"
 ]
 
@@ -23,4 +23,4 @@ dependencies = [
 packages = []
 
 [dependency-groups]
-dev = ["jupyter-ruff==0.3.1", "jupyterlab==4.6.2", "jupytext==1.19.5"]
+dev = ["jupyter-ruff==0.3.1", "jupyterlab==4.6.3", "jupytext==1.19.5"]
